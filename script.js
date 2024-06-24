@@ -49,4 +49,9 @@ function playRound(humanChoice, computerChoice) {
         computerScore++;
     }
 }
-
+ // How to test playRound function on your console
+ // Test playRound function
+const humanInput = getHumanChoice();
+const computerInput = getComputerChoice();
+playRound(humanInput, computerInput);
+console.log(`Human Score: ${humanScore}, Computer Score: ${computerScore}`);
