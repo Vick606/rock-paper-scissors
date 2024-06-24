@@ -60,14 +60,22 @@ function playGame() {
         const computerChoice = getComputerChoice();
         const roundWinner = playRound(humanChoice, computerChoice);
 
+         // Debug logs to trace the winner and score increment
+         console.log(`Round ${i + 1} winner: ${roundWinner}`);
+         console.log(`Current scores before increment - Human: ${humanScore}, Computer: ${computerScore}`);
+
         // Increment the score based on the winner
         if (roundWinner === 'human') {
-            humanScore++;
+            humanScore += 20; // Increment by 20 points for each win
+            console.log(`Human wins round ${i + 1}, current human score: ${humanScore}`); // Log the updated human score
         } else if (roundWinner === 'computer') {
-            computerScore++;
+            computerScore += 20; // Increment by 20 points for each win
+            console.log(`Computer wins round ${i + 1}, current computer score: ${computerScore}`); // Log the updated computer score
+        } else {
+            console.log(`Round ${i + 1} is a tie, no points awarded.`);
         }
         // Log the current scores
-        console.log(`Round ${i + 1}: Human Score: ${humanScore}, Computer Score: ${computerScore}`);
+        console.log(`End of round ${i + 1}: Human Score: ${humanScore}, Computer Score: ${computerScore}`);
     }
     // Declare the final winner
     if (humanScore > computerScore) {
