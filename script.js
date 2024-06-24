@@ -54,3 +54,9 @@ function playGame() {
     // Variables to keep track of scores
     let humanScore = 0;
     let computerScore = 0;
+    // Play 5 rounds
+    for (let i = 0; i < 5; i++) {
+        const humanChoice = getHumanChoice();
+        const computerChoice = getComputerChoice();
+        const roundWinner = playRound(humanChoice, computerChoice);
+
