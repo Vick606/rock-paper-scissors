@@ -66,4 +66,7 @@ function playGame() {
         } else if (roundWinner === 'computer') {
             computerScore++;
         }
+        // Log the current scores
+        console.log(`Round ${i + 1}: Human Score: ${humanScore}, Computer Score: ${computerScore}`);
+    }
 
