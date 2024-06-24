@@ -1,1 +1,3 @@
-console.log("Hello World, Checking JS linking...12");
+function getComputerChoice() {
+    const randomNumber = Math.floor(Math.random() * 3);
+}
