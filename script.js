@@ -79,4 +79,7 @@ function playGame() {
     }
 }
 
+// How to start game
+playGame();
+
 
