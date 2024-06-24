@@ -33,3 +33,7 @@ function getHumanChoice() {
 function playRound(humanChoice, computerChoice) {
     // Make the humanChoice case-insensitive
     humanChoice = humanChoice.toLowerCase();
+
+    // Determine the winner of the round
+    if (humanChoice === computerChoice) {
+        console.log("It's a tie!");
