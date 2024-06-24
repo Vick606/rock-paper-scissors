@@ -31,4 +31,5 @@ function getHumanChoice() {
 }
 // Function to play a single round
 function playRound(humanChoice, computerChoice) {
-    
+    // Make the humanChoice case-insensitive
+    humanChoice = humanChoice.toLowerCase();
