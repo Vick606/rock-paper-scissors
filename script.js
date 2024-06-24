@@ -60,3 +60,10 @@ function playGame() {
         const computerChoice = getComputerChoice();
         const roundWinner = playRound(humanChoice, computerChoice);
 
+        // Increment the score based on the winner
+        if (roundWinner === 'human') {
+            humanScore++;
+        } else if (roundWinner === 'computer') {
+            computerScore++;
+        }
+
