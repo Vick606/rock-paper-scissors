@@ -29,3 +29,6 @@ function getHumanChoice() {
     // Return the validated choice
     return choice;
 }
+// Function to play a single round
+function playRound(humanChoice, computerChoice) {
+    
