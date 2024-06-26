@@ -1,0 +1,85 @@
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #FFD700;  
+  }
+  
+  .game-container {
+    text-align: center;
+    background-color: #FF69B4;  
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  h1 {
+    color: #FFFFFF; 
+    font-size: 2.5rem;
+    text-shadow: 2px 2px #FF1493;  
+  }
+  
+  .score, .results, .winner {
+    margin: 1rem 0;
+    font-size: 1.3rem;
+    color: #FFFFFF;  
+    font-weight: bold;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  
+  .game-button {
+    font-size: 3rem;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    background-color: #00CED1;  
+    box-shadow: 0 5px #008B8B;  
+  }
+  
+  .game-button:hover {
+    transform: scale(1.1);
+  }
+  
+  .game-button:active {
+    transform: scale(0.9);
+    box-shadow: 0 2px #008B8B;
+  }
+  
+  .new-game-button {
+    font-size: 1.2rem;
+    padding: 0.7rem 1.2rem;
+    background-color: #32CD32;  /* Lime Green */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    box-shadow: 0 5px #228B22;  /* Forest Green for 3D effect */
+  }
+  
+  .new-game-button:hover {
+    background-color: #228B22;
+    transform: scale(1.05);
+  }
+  
+  .new-game-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px #228B22;
+  }
+  
+  .new-game-button:disabled {
+    background-color: #A9A9A9;  /* Dark Gray */
+    box-shadow: none;
+    cursor: not-allowed;
+  }

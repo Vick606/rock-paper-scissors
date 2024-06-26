@@ -1,65 +1,102 @@
-// Global variables to keep track of scores
-let humanScore = 0;
+let playerScore = 0;
 let computerScore = 0;
+let roundsPlayed = 0;
 
-// Function to get human player's choice
-function getHumanChoice() {
-    const userInput = prompt("Enter your choice: rock, paper, or scissors").toLowerCase();
-    if (userInput === "rock" || userInput === "paper"  || userInput ==="scissors") {
-        return userInput;
-    } else {
-        console.log("Invalid choice. Please enter rock, paper, or scissors");
-        return getHumanChoice();
-    }
-    }
-// Function to get comp's choice
+// DOM elements
+const resultDiv = document.getElementById('results');
+const scoreDiv = document.getElementById('score');
+const winnerDiv = document.getElementById('winner');
+const newGameBtn = document.getElementById('newGame');
+
+
 function getComputerChoice() {
-    const randomValue = Math.random();
-    if (randomValue < 0.33) {
-        return "rock";
-    } else if (randomValue < 0.67) {
-        return "paper";
-    } else {
-        return "scissors";
-    }
+    const choices = ['rock', 'paper', 'scissors'];
+    return choices[Math.floor(Math.random() * choices.length)];
 }
 // Function to play a single round
-function playRound(humanChoice, computerChoice) {
-    const humanChoiceLower = humanChoice.toLowerCase();
+function playRound(playerSelection) {
+    if (roundsPlayed >= 5) return;
 
-    // Determine the winner of the round
-    if (humanChoice === computerChoice) {
-        console.log("It's a tie!");
+    const computerSelection = getComputerChoice();
+    let result;
+
+    if (playerSelection === computerSelection) {
+        result = "It's a tie!";
     } else if (
-        (humanChoice === "rock" && computerChoice === "scissors") ||
-        (humanChoice === "paper" && computerChoice === "rock") ||
-        (humanChoice === "scissors" && computerChoice === "paper")
+        (playerSelection === "rock" && computerSelection === "scissors") ||
+        (playerSelection === "paper" && computerSelection === "rock") ||
+        (playerSelection === "scissors" && computerSelection === "paper")
     ) {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+        result = `You win! ${playerSelection} beats ${computerSelection}`;
         humanScore++;
     } else {
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+        result = `You lose! ${computerSelection} beats ${playerSelection}`;
         computerScore++;
     }
-}
 
-// Function to play the game
-function playGame() {
-    // Play 5 rounds
-    for (let i = 0; i < 5; i++) {
-        const humanChoice = getHumanChoice();
-        const computerChoice = getComputerChoice();
-        playRound(humanChoice, computerChoice);
+    // Update results and score on the page
+    resultDiv.textContent = result;
+    updateScore();
+
+    roundsPlayed++;
+
+    if (roundsPlayed === 5) {
+        endGame();
     }
-
-    // Display current scores 
-    console.log("Current scores: Human =", humanScore, "Computer =", computerScore);
-
-    // Display final scores 
-    console.log("Final scores: Human =", humanScore, "Computer =", computerScore);
 }
 
-// How to start game
-playGame();
+// Function to update score
+function updateScore() {
+    scoreDiv.textContent = `Player: ${playerScore}, Computer: ${computerScore}`;
+}
 
+function endGame() {
+    let winner;
+    if (playerScore > computerScore) {
+        winner = "human";
+    } else if (computerScore > playerScore) {
+        winner = "computer";
+    } else {
+        winner = "It's a tie";
+    }
+    winnerDiv.textContent = `The winner for this round is ${winner} with ${Math.max(playerScore, computerScore)} wins.`;
+    disableButtons();
+    newGameBtn.disabled = false;
+}
 
+// Function to disable buttons after game end
+function disableButtons() {
+    document.querySelectorAll('#buttons button').forEach(button => {
+        button.disabled = true;
+    });
+}
+
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    roundsPlayed = 0;
+    resultDiv.textContent = '';
+    winnerDiv.textContent = '';
+    updateScore();
+    enableButtons();
+    newGameBtn.disabled = true;
+}
+
+function enableButtons() {
+    document.querySelectorAll('#buttons button').forEach(button => {
+        button.disabled = false;
+    });
+}
+
+function initGame() {
+    resetGame();
+    newGameBtn.disabled = true;
+}
+// Add event listeners to buttons
+document.getElementById('rock').addEventListener('click', () => playRound('rock'));
+document.getElementById('paper').addEventListener('click', () => playRound('paper'));
+document.getElementById('scissors').addEventListener('click', () => playRound('scissors'));
+document.getElementById('newGame').addEventListener('click', resetGame);
+newGameBtn.addEventListener('click', resetGame);
+
+initGame(); // Initialize the game when the script loads
