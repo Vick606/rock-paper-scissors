@@ -1,4 +1,4 @@
-let playerScore = 0;
+let humanScore = 0;
 let computerScore = 0;
 let roundsPlayed = 0;
 
@@ -47,19 +47,19 @@ function playRound(playerSelection) {
 
 // Function to update score
 function updateScore() {
-    scoreDiv.textContent = `Player: ${playerScore}, Computer: ${computerScore}`;
+    scoreDiv.textContent = `Human (ME): ${humanScore}, Computer: ${computerScore}`;
 }
 
 function endGame() {
     let winner;
-    if (playerScore > computerScore) {
+    if (humanScore > computerScore) {
         winner = "human";
-    } else if (computerScore > playerScore) {
+    } else if (computerScore > humanScore) {
         winner = "computer";
     } else {
         winner = "It's a tie";
     }
-    winnerDiv.textContent = `The winner for this round is ${winner} with ${Math.max(playerScore, computerScore)} wins.`;
+    winnerDiv.textContent = `The winner for this round is ${winner} with ${Math.max(humanScore, computerScore)} wins.`;
     disableButtons();
     newGameBtn.disabled = false;
 }
@@ -72,7 +72,7 @@ function disableButtons() {
 }
 
 function resetGame() {
-    playerScore = 0;
+    humanScore = 0;
     computerScore = 0;
     roundsPlayed = 0;
     resultDiv.textContent = '';
@@ -99,4 +99,4 @@ document.getElementById('scissors').addEventListener('click', () => playRound('s
 document.getElementById('newGame').addEventListener('click', resetGame);
 newGameBtn.addEventListener('click', resetGame);
 
-initGame(); // Initialize the game when the script loads
+initGame();
