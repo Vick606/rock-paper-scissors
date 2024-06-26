@@ -2,24 +2,19 @@ let humanScore = 0;
 let computerScore = 0;
 let roundsPlayed = 0;
 
-// DOM elements
 const resultDiv = document.getElementById('results');
 const scoreDiv = document.getElementById('score');
 const winnerDiv = document.getElementById('winner');
 const newGameBtn = document.getElementById('newGame');
 
-
 function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
     return choices[Math.floor(Math.random() * choices.length)];
 }
-// Function to play a single round
 function playRound(playerSelection) {
     if (roundsPlayed >= 5) return;
-
     const computerSelection = getComputerChoice();
     let result;
-
     if (playerSelection === computerSelection) {
         result = "It's a tie!";
     } else if (
@@ -34,7 +29,6 @@ function playRound(playerSelection) {
         computerScore++;
     }
 
-    // Update results and score on the page
     resultDiv.textContent = result;
     updateScore();
 
@@ -45,7 +39,6 @@ function playRound(playerSelection) {
     }
 }
 
-// Function to update score
 function updateScore() {
     scoreDiv.textContent = `Human (ME): ${humanScore}, Computer: ${computerScore}`;
 }
@@ -64,7 +57,6 @@ function endGame() {
     newGameBtn.disabled = false;
 }
 
-// Function to disable buttons after game end
 function disableButtons() {
     document.querySelectorAll('#buttons button').forEach(button => {
         button.disabled = true;
@@ -92,7 +84,7 @@ function initGame() {
     resetGame();
     newGameBtn.disabled = true;
 }
-// Add event listeners to buttons
+// Event listeners to buttons
 document.getElementById('rock').addEventListener('click', () => playRound('rock'));
 document.getElementById('paper').addEventListener('click', () => playRound('paper'));
 document.getElementById('scissors').addEventListener('click', () => playRound('scissors'));
